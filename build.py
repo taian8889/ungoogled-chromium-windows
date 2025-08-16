@@ -83,15 +83,11 @@ def _run_build_process_timeout(*args, timeout):
             if proc.returncode != 0:
                 raise RuntimeError('Build failed!')
         except subprocess.TimeoutExpired:
-            print('Sending keyboard interrupt')
-            for _ in range(3):
-                ctypes.windll.kernel32.GenerateConsoleCtrlEvent(1, proc.pid)
-                time.sleep(1)
-            try:
-                proc.wait(10)
-            except:
-                proc.kill()
-            raise KeyboardInterrupt
+            print('Build exceeded timeout but continuing to wait for completion...')
+            # Don't interrupt, just continue waiting
+            proc.wait()
+            if proc.returncode != 0:
+                raise RuntimeError('Build failed!')
 
 
 def _make_tmp_paths():
@@ -302,8 +298,9 @@ def main():
 
     # Run ninja
     if args.ci:
+        # FIXED: Changed timeout from 3.5 hours to 6 hours and removed forced interruption
         _run_build_process_timeout('third_party\\ninja\\ninja.exe', '-C', 'out\\Default', 'chrome',
-                                   'chromedriver', 'mini_installer', timeout=3.5*60*60)
+                                   'chromedriver', 'mini_installer', timeout=6*60*60)
         # package
         os.chdir(_ROOT_DIR)
         subprocess.run([sys.executable, 'package.py'])
