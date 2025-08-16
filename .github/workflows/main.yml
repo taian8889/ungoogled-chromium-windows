@@ -3,6 +3,13 @@ on:
   push:
     tags:
       - '*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to build'
+        required: true
+        default: 'v139.0.7258.127-custom-1'
+
 jobs:
   build-1:
     runs-on: windows-2022
