@@ -5,12 +5,12 @@ on:
       version:
         description: 'Version to build'
         required: true
-        default: 'v139.0.7258.127-x64-test'
+        default: 'v139.0.7258.127-x64-10h'
 
 jobs:
   build-x64-1:
     runs-on: windows-2022
-    timeout-minutes: 360  # 6 hours timeout
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,20 +25,20 @@ jobs:
       - name: Setup Stage
         run: npm install
         working-directory: ./.github/actions/stage
-      - name: Run Stage (x64 only)
+      - name: Run Stage (x64 only - 10h timeout)
         id: stage
         uses: ./.github/actions/stage
         with:
           finished: false
           from_artifact: false
-        timeout-minutes: 350  # 5h 50m for the build step
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-2:
     needs: build-x64-1
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -59,14 +59,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-3:
     needs: build-x64-2
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -87,14 +87,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-4:
     needs: build-x64-3
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -115,14 +115,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-5:
     needs: build-x64-4
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -143,14 +143,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-6:
     needs: build-x64-5
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -171,14 +171,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-7:
     needs: build-x64-6
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -199,14 +199,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-8:
     needs: build-x64-7
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -227,14 +227,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-9:
     needs: build-x64-8
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -255,14 +255,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-10:
     needs: build-x64-9
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -283,14 +283,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-11:
     needs: build-x64-10
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -311,14 +311,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-12:
     needs: build-x64-11
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -339,14 +339,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-13:
     needs: build-x64-12
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -367,14 +367,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-14:
     needs: build-x64-13
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -395,14 +395,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-15:
     needs: build-x64-14
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -423,14 +423,14 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
       
   build-x64-16:
     needs: build-x64-15
     runs-on: windows-2022
-    timeout-minutes: 360
+    timeout-minutes: 600  # 10 hours timeout
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -451,7 +451,7 @@ jobs:
         with:
           finished: ${{ join(needs.*.outputs.finished) }}
           from_artifact: true
-        timeout-minutes: 350
+        # No step timeout - let job timeout handle it
     outputs:
       finished: ${{ steps.stage.outputs.finished }}
 
@@ -468,25 +468,30 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.event.inputs.version }}
-          name: "ungoogled-chromium x64 Test Build ${{ github.event.inputs.version }}"
+          name: "ungoogled-chromium x64 10h Build ${{ github.event.inputs.version }}"
           body: |
-            ## 🎯 x64 Test Build
+            ## 🎯 x64 Extended 10-Hour Build
             
-            This is a test build of ungoogled-chromium x64 architecture only.
+            This is an extended timeout build of ungoogled-chromium x64 architecture.
             
-            ### ✅ Fixed Issues:
-            - Extended build timeout from 3.5h to 6h
-            - Removed forced interruption on timeout
-            - Added proper GitHub Actions timeout configuration
+            ### ✅ Extended Timeout Settings:
+            - Job timeout: 10 hours (600 minutes)
+            - No step timeout limits (removed 350min limit)
+            - Build.py timeout: 6 hours (360 minutes)
             
-            ### 📦 Build Details:
+            ### 📊 Timeout Evolution:
+            - Original: 3.5 hours → ❌ Failed
+            - First fix: 5h 50m → ❌ GitHub Actions timeout
+            - This build: 10 hours → 🎯 Should succeed!
+            
+            ### 🔍 Build Details:
             - **Architecture**: x64 only
             - **Version**: ${{ github.event.inputs.version }}
-            - **Build Time**: ~6-8 hours
-            - **Status**: Test build to verify timeout fix
+            - **Max Build Time**: 10 hours
+            - **Status**: Extended timeout test build
             
-            ### 🔍 Next Steps:
-            If this build succeeds, we'll proceed with full multi-architecture build.
+            ### 🎉 Success Criteria:
+            If this build completes successfully, the timeout fixes are working and we can proceed with fingerprint protection integration!
           files: |
             ungoogled-chromium*
           prerelease: true
