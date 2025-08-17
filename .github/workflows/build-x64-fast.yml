@@ -27,7 +27,7 @@ jobs:
         working-directory: ./.github/actions/stage
       - name: Apply Fast Build Config
         run: |
-          echo "🚀 Applying fast build optimizations..."
+          echo "Applying fast build optimizations..."
           python build_config_fast.py > fast_args.gn
           echo "Fast build configuration generated"
         working-directory: C:\ungoogled-chromium-windows
@@ -269,30 +269,30 @@ jobs:
           tag_name: ${{ github.event.inputs.version }}
           name: "ungoogled-chromium x64 Fast Build ${{ github.event.inputs.version }}"
           body: |
-            ## 🚀 x64 Fast Build (Speed Optimized)
+            ## x64 Fast Build (Speed Optimized)
             
             This is a speed-optimized build of ungoogled-chromium x64 architecture.
             
-            ### ⚡ Speed Optimizations Applied:
+            ### Speed Optimizations Applied:
             - No debug symbols (symbol_level=0) - 30-40% faster
             - Jumbo builds enabled - 20-30% faster  
             - Disabled non-essential features (NaCl, Widevine, etc.)
             - Optimized linking with LLD
             - Reduced binary size for faster linking
             
-            ### 📊 Expected Performance:
+            ### Expected Performance:
             - Build time: 4-6 hours (vs 8-12 hours normal)
             - Speed improvement: 40-60% faster
             - Binary size: 30-50% smaller
             - All core browser features intact
             
-            ### 🔍 Build Details:
+            ### Build Details:
             - **Architecture**: x64 only
             - **Version**: ${{ github.event.inputs.version }}
             - **Build Type**: Speed optimized
             - **Max Build Time**: 8 hours (should complete in 4-6h)
             
-            ### ✅ Features Included:
+            ### Features Included:
             - Full web browsing capability
             - JavaScript engine (V8)
             - HTML5 support
@@ -300,14 +300,14 @@ jobs:
             - WebGL support
             - All ungoogled-chromium privacy features
             
-            ### ❌ Features Disabled (for speed):
+            ### Features Disabled (for speed):
             - Native Client (NaCl)
             - Widevine DRM
             - Chrome Remote Desktop
             - Print Preview
             - Some Google services integration
             
-            ### 🎯 Perfect For:
+            ### Perfect For:
             - Testing ungoogled-chromium functionality
             - Daily browsing (all essential features work)
             - Development and debugging
