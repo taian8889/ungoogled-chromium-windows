@@ -1,0 +1,499 @@
+name: Build x64 Only Extended
+on:  
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to build'
+        required: true
+        default: 'v139.0.7258.127-x64-extended'
+
+jobs:
+  build-x64-1:
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage (x64 only - Extended timeout)
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: false
+          from_artifact: false
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-2:
+    needs: build-x64-1
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-3:
+    needs: build-x64-2
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-4:
+    needs: build-x64-3
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-5:
+    needs: build-x64-4
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-6:
+    needs: build-x64-5
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-7:
+    needs: build-x64-6
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-8:
+    needs: build-x64-7
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-9:
+    needs: build-x64-8
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-10:
+    needs: build-x64-9
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-11:
+    needs: build-x64-10
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-12:
+    needs: build-x64-11
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-13:
+    needs: build-x64-12
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-14:
+    needs: build-x64-13
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-15:
+    needs: build-x64-14
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+      
+  build-x64-16:
+    needs: build-x64-15
+    runs-on: windows-2022
+    timeout-minutes: 600  # 10 hours timeout
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Init
+        run: Copy-Item -Path . -Destination "C:\ungoogled-chromium-windows" -Recurse
+      - name: Setup Stage
+        run: npm install
+        working-directory: ./.github/actions/stage
+      - name: Run Stage
+        id: stage
+        uses: ./.github/actions/stage
+        with:
+          finished: ${{ join(needs.*.outputs.finished) }}
+          from_artifact: true
+        # No step timeout - let job timeout handle it
+    outputs:
+      finished: ${{ steps.stage.outputs.finished }}
+
+  publish-x64-release:
+    needs: build-x64-16
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download x64 package
+        uses: actions/download-artifact@v4
+        with:
+          name: chromium
+      - name: Publish x64 release
+        id: publish
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          name: "ungoogled-chromium x64 Extended Build ${{ github.event.inputs.version }}"
+          body: |
+            ## 🎯 x64 Extended Timeout Build
+            
+            This is an extended timeout build of ungoogled-chromium x64 architecture.
+            
+            ### ✅ Extended Timeout Settings:
+            - Job timeout: 10 hours (600 minutes)
+            - No step timeout limits
+            - Build.py timeout: 6 hours (360 minutes)
+            
+            ### 📊 Previous Results:
+            - Original timeout: 3.5 hours (failed)
+            - First fix: 5h 50m (GitHub Actions timeout)
+            - This build: 10 hours maximum
+            
+            ### 🔍 Build Details:
+            - **Architecture**: x64 only
+            - **Version**: ${{ github.event.inputs.version }}
+            - **Max Build Time**: 10 hours
+            - **Status**: Extended timeout test build
+            
+            ### 🎯 Success Criteria:
+            If this build completes successfully, the timeout fixes are working!
+          files: |
+            ungoogled-chromium*
+          prerelease: true
+    outputs:
+      assets: ${{ steps.publish.outputs.assets }}
