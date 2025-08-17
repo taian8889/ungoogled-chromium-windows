@@ -1,0 +1,12 @@
+Trigger extended build workflow - 10 hours timeout
+Created: 2025-08-17 10:10 UTC
+Purpose: Force GitHub to recognize the new workflow file
+
+This file is created to trigger GitHub Actions to refresh and recognize the new build-x64-only-extended.yml workflow file.
+
+If you still don't see the "Run workflow" button:
+1. Wait 2-3 minutes for GitHub to process
+2. Hard refresh the page (Ctrl+F5)
+3. Check if Actions are enabled in repository settings
+4. Try accessing the direct workflow URL:
+   https://github.com/taian8889/ungoogled-chromium-windows/actions/workflows/build-x64-only-extended.yml
